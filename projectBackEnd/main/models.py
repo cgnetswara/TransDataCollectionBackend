@@ -1,8 +1,12 @@
 from django.db import models
 import uuid
 # Create your models here.
+
 class User(models.Model):
     IMEI = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.IMEI
 
 class Question(models.Model):
     word = models.CharField(max_length=200)
@@ -12,11 +16,10 @@ class Question(models.Model):
     def __str__(self):
         return self.word
 
-class UserQA(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    QId = models.ForeignKey(Question, on_delete=models.CASCADE)
-    AId = models.IntegerField()
-
 class Answer(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer = models.CharField(max_length=200)
+
+    def __str__(self):
+        return str(self.user) + " | " + str(self.question) + " | " + str(self.answer)
