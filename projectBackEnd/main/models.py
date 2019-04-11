@@ -4,6 +4,7 @@ import uuid
 
 class User(models.Model):
     IMEI = models.CharField(max_length=200)
+    offset = models.IntegerField(default=0)
 
     def __str__(self):
         return self.IMEI
