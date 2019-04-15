@@ -12,7 +12,7 @@ Please follow the instructions carefully for a successful installation process.
     cd projectBackEnd
     ```
 
-* Install the required packages
+* Install the required packages. Make a virtual environment using [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) or [virtualenv](https://virtualenv.pypa.io/en/latest/) if you want to. We assume you are using the native python package installer `pip`.
 
     ```sh
     pip install -r ../requirements.txt
@@ -20,8 +20,8 @@ Please follow the instructions carefully for a successful installation process.
 
 Note: Make sure you are using correct python and pip versions all along installation
 
-* Set the ALLOWED_HOSTS
-    We have already included all the possible hosts which are neccessary to run the django app along with android app on localhost. If you want to add any other address (like a network address), please add that in the ALLOWED_HOSTS variable in `projectBackEnd/projectBackEnd/settings.py`.
+* Set the `ALLOWED_HOSTS`:<br />
+    We have already included all the possible hosts which are neccessary to run the django app along with android app on localhost. If you want to add any other address (like a network address), please add that in the `ALLOWED_HOST`S variable in `projectBackEnd/projectBackEnd/settings.py`.
 
     Note: Host `10.0.2.2` is necessary to let the android emulator to access the django app on localhost
 
@@ -41,12 +41,12 @@ Note: Make sure you are using correct python and pip versions all along installa
     python manage.py runserver
     ```
 
-* To observe the input output, visit `Answers` and `Questions` tab in `localhost:8000/admin`.
+* Head over to [TransDataCollection Android App](https://github.com/cgnetswara/TransDataCollection) to download and install the android app to run along with this app. To observe the input output, visit `Answers` and `Questions` tab in `localhost:8000/admin`.
 
 ## Team and Contributors
-Anurag Shukla (Android App) (IIIT Naya Raipur)
-Ankush Jain (Backend) (IIIT Naya Raipur)
-Devansh Mehta (Testing and Brain Storming) (CGNet Swara)
-Vipin Kirar (Field Testing) (CGNet Swara)
-Sebastin Santy (App Testing) (Microsoft Research)
+* Anurag Shukla (Android App) (IIIT Naya Raipur)
+* Ankush Jain (Backend) (IIIT Naya Raipur)
+* Devansh Mehta (Testing and Brain Storming) (CGNet Swara)
+* Vipin Kirar (Field Testing) (CGNet Swara)
+* Sebastin Santy (App Testing) (Microsoft Research)
 
