@@ -3,8 +3,9 @@ from django.http import HttpResponse
 from . import models
 import pandas as pd
 import random, json
+import os
 
-data = pd.read_excel("C:/Users/Anurag Shukla/Desktop/Microsoft Gondi/ProjectBackendNew/projectBackEnd/main/res/wordsData.xlsx")
+data = pd.read_excel(os.path.join(os.path.dirname(__file__), "res","wordsData.xlsx"))
 DATA_LEN =len(data)
 # Create your views here.
 def getTen(request, IMEI):
