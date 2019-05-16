@@ -44,7 +44,7 @@ Note: Make sure you are using correct python and pip versions all along installa
 * Head over to [TransDataCollection Android App](https://github.com/cgnetswara/TransDataCollection) to download and install the android app to run along with this app. To observe the input output, visit `Answers` and `Questions` tab in `localhost:8000/admin`.
 
 ## Team and Contributors
-* Anurag Shukla (Android App) (IIIT Naya Raipur)
+* Anurag Shukla (Android App and Backend) (IIIT Naya Raipur)
 * Ankush Jain (Backend) (IIIT Naya Raipur)
 * Devansh Mehta (Testing and Brain Storming) (CGNet Swara)
 * Vipin Kirar (Field Testing) (CGNet Swara)
