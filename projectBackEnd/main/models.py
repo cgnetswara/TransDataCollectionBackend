@@ -18,9 +18,13 @@ class Question(models.Model):
         return self.word
 
 class Answer(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer = models.CharField(max_length=200)
+    count = models.IntegerField(default=1)
 
     def __str__(self):
-        return str(self.user) + " | " + str(self.question) + " | " + str(self.answer)
+        return str(self.question) + " | " + str(self.answer)
+
+class UserAnswer(models.Model):
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

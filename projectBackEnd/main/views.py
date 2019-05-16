@@ -51,14 +51,30 @@ def submitAnswer(request, IMEI, qId, answerGiven):
     #     user = models.User()
     #     user.IMEI = IMEI
     #     user.save()
+
     user = models.User.objects.get(IMEI=IMEI)
     question = models.Question.objects.get(id=qId)
-    top3Subs = models.Answer.objects.get(question=question).order_by("")
-    answerObject = models.Answer()
-    answerObject.question = question
-    answerObject.answer = answerGiven
-    answerObject.user = user
-    answerObject.save()
+    question.save()
+    userAnswer = models.UserAnswer()
+    try:
+        answer = models.Answer.objects.get(question=question, answer=answerGiven)
+        answer.count += 1
+        answer.save()
+    except:
+        answer = models.Answer()
+        answer.question = question
+        answer.answer = answerGiven
+        answer.save()
+
+    userAnswer.user = user
+    userAnswer.answer = answer
+    userAnswer.save()
+
+    # answerObject = models.Answer()
+    # answerObject.question = question
+    # answerObject.answer = answerGiven
+    # answerObject.user = user
+    # answerObject.save()
     user.offset = qId+1
     user.save()
     return HttpResponse("Success")
