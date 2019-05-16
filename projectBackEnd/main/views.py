@@ -3,11 +3,14 @@ from django.http import HttpResponse
 from . import models
 import pandas as pd
 import random, json
-import os
 
-data = pd.read_excel(os.path.join(os.path.dirname(__file__), "res","wordsData.xlsx"))
+data = pd.read_excel("C:/Users/Anurag Shukla/Desktop/Microsoft Gondi/ProjectBackendNew/projectBackEnd/main/res/wordsData.xlsx")
 DATA_LEN =len(data)
 # Create your views here.
+
+def home(request):
+    return  HttpResponse("The server started successfully. Make sure the android application is in the same network.")
+
 def getTen(request, IMEI):
     dicti = {}
     QRows = []
@@ -39,7 +42,6 @@ def getTen(request, IMEI):
         newEntry.word = data['Hindi'].iloc[i]
         newEntry.id = i
         newEntry.save()
-    user.offset += 10
     user.save()
     jsonDict = {'words': dicti, 'offset': offset}
     return HttpResponse((json.dumps(jsonDict)))
@@ -51,11 +53,14 @@ def submitAnswer(request, IMEI, qId, answerGiven):
     #     user.save()
     user = models.User.objects.get(IMEI=IMEI)
     question = models.Question.objects.get(id=qId)
+    top3Subs = models.Answer.objects.get(question=question).order_by("")
     answerObject = models.Answer()
     answerObject.question = question
     answerObject.answer = answerGiven
     answerObject.user = user
     answerObject.save()
+    user.offset = qId+1
+    user.save()
     return HttpResponse("Success")
 
 
