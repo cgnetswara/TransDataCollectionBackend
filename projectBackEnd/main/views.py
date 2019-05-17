@@ -70,13 +70,24 @@ def submitAnswer(request, IMEI, qId, answerGiven):
     userAnswer.answer = answer
     userAnswer.save()
 
+    user.offset = qId + 1
+    user.save()
+
+    allAnswers = models.Answer.objects.filter(question=question).order_by('-count')[:2]
+    topAnswers = {}
+    for eachAnswer in allAnswers:
+        topAnswers[eachAnswer.answer] = eachAnswer.count
+
+    userAnswer = {}
+    userAnswer[answerGiven] = answer.count
+
+    toSend = {"topAnswers": topAnswers, "userAnswer": userAnswer}
     # answerObject = models.Answer()
     # answerObject.question = question
     # answerObject.answer = answerGiven
     # answerObject.user = user
     # answerObject.save()
-    user.offset = qId+1
-    user.save()
-    return HttpResponse("Success")
+
+    return HttpResponse((json.dumps(toSend)))
 
 
